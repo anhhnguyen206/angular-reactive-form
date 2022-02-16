@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -9,8 +10,13 @@ import { FormControl } from '@angular/forms';
 export class NameEditorComponent {
   name = new FormControl('');
 
+  constructor(private http: HttpClient) {
+
+  }
+
   updateName() {
-    this.name.setValue('Nancy');
+    this.http.post('http://mockbin.org/bin/f1ac595a-2dea-4719-8365-1f6dfa4192df?foo=bar&foo=baz', { name: this.name.value })
+      .subscribe(console.log);
   }
 }
 
